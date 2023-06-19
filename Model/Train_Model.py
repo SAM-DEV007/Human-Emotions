@@ -56,7 +56,10 @@ def main():
     inputs = tf.keras.Input(shape=(48, 48, 3))
     x = data_augmentation(inputs)
     x = base_model(x, training=False)
+    x = tf.keras.layers.Conv2D(64, 3, padding="same", activation="relu")(x)
+    x = tf.keras.layers.MaxPooling2D()(x)
     x = global_average_layer(x)
+    x = tf.keras.layers.Dense(512, activation="relu")(x)
     x = tf.keras.layers.Dropout(0.2)(x)
     outputs = prediction_layer(x)
 
