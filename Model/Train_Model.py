@@ -43,7 +43,7 @@ def main():
     base_model = tf.keras.applications.ResNetRS50(input_shape=img_shape, include_top=False, weights='imagenet')
     base_model.trainable = True
 
-    for layer in base_model.layers[:200]:
+    for layer in base_model.layers[:150]:
         layer.trainable = False
 
     global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
